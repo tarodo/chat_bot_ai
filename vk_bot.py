@@ -2,8 +2,9 @@ import os
 import random
 
 import vk_api
-from vk_api.longpoll import VkLongPoll, VkEventType
 from environs import Env
+from vk_api.longpoll import VkEventType, VkLongPoll
+
 from main import detect_intent_text, get_logger
 
 
@@ -12,9 +13,7 @@ def dialogflow_answer(event, vk_api):
 
     if response:
         vk_api.messages.send(
-            user_id=event.user_id,
-            message=response,
-            random_id=random.randint(1, 1000)
+            user_id=event.user_id, message=response, random_id=random.randint(1, 1000)
         )
 
 
