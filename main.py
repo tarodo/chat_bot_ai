@@ -35,13 +35,15 @@ def detect_intent_text(project_id, session_id, text, language_code="ru") -> str:
         request={"session": session, "query_input": query_input}
     )
 
-    return response.query_result.fulfillment_text
+    if not response.query_result.intent.is_fallback:
+        return response.query_result.fulfillment_text
 
 
 def dialogflow_answer(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
     response = detect_intent_text(PROJECT_ID, update.effective_user.id, update.message.text)
-    update.message.reply_text(response)
+    if response:
+        update.message.reply_text(response)
 
 
 def main(bot_token) -> None:

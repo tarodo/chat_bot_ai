@@ -9,12 +9,12 @@ from main import detect_intent_text
 
 def dialogflow_answer(event, vk_api):
     response = detect_intent_text(PROJECT_ID, event.user_id, event.text)
-
-    vk_api.messages.send(
-        user_id=event.user_id,
-        message=response,
-        random_id=random.randint(1, 1000)
-    )
+    if response:
+        vk_api.messages.send(
+            user_id=event.user_id,
+            message=response,
+            random_id=random.randint(1, 1000)
+        )
 
 
 if __name__ == "__main__":

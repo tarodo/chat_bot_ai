@@ -1,3 +1,5 @@
 .env
 .idea/
 *.json
+*.pyc
+__pycache__/
