@@ -1,7 +1,7 @@
 import logging
 import os
 
-from telegram import Update, ForceReply, Bot
+from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 from environs import Env
 from google.cloud import dialogflow
@@ -40,7 +40,7 @@ def detect_intent_text(project_id, session_id, text, language_code="ru") -> str:
 
 def echo(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
-    response = detect_intent_text("bot-speach-dvmn", update.effective_user.id, update.message.text)
+    response = detect_intent_text(PROJECT_ID, update.effective_user.id, update.message.text)
     update.message.reply_text(response)
 
 
@@ -59,5 +59,6 @@ if __name__ == "__main__":
     env = Env()
     env.read_env()
 
-    BOT_TOKEN = os.environ["BOT_TOKEN"]
-    main(BOT_TOKEN)
+    bot_token = os.environ["BOT_TOKEN"]
+    PROJECT_ID = os.environ["GOOGLE_PROJECT_ID"]
+    main(bot_token)
