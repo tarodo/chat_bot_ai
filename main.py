@@ -38,7 +38,7 @@ def detect_intent_text(project_id, session_id, text, language_code="ru") -> str:
     return response.query_result.fulfillment_text
 
 
-def echo(update: Update, context: CallbackContext) -> None:
+def dialogflow_answer(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
     response = detect_intent_text(PROJECT_ID, update.effective_user.id, update.message.text)
     update.message.reply_text(response)
@@ -49,7 +49,7 @@ def main(bot_token) -> None:
     updater = Updater(bot_token)
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, dialogflow_answer))
 
     updater.start_polling()
     updater.idle()

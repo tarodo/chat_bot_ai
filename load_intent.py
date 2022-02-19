@@ -1,6 +1,5 @@
 import json
 import os
-from pprint import pprint
 from environs import Env
 
 from google.cloud import dialogflow
