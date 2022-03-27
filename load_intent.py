@@ -41,7 +41,10 @@ if __name__ == "__main__":
 
     QUESTIONS_PATH = os.getenv("QUESTIONS_FILE")
     PROJECT_ID = os.environ["GOOGLE_PROJECT_ID"]
-    work_intent_block = read_phrases(QUESTIONS_PATH, "Устройство на работу")
+    with open(QUESTIONS_PATH, "r", encoding="utf-8") as my_file:
+        questions = json.load(my_file)
+    work_intent_block = questions["Устройство на работу"]
+
     create_intent(
         PROJECT_ID,
         "Устройство на работу",
