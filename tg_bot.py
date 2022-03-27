@@ -17,7 +17,7 @@ def start(update: Update, context: CallbackContext) -> None:
     )
 
 
-def dialogflow_answer(update: Update, context: CallbackContext) -> None:
+def send_answer(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
     response = detect_intent_text(
         PROJECT_ID, update.effective_user.id, update.message.text
@@ -33,7 +33,7 @@ def main() -> None:
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(
-        MessageHandler(Filters.text & ~Filters.command, dialogflow_answer)
+        MessageHandler(Filters.text & ~Filters.command, send_answer)
     )
 
     updater.start_polling()

@@ -9,7 +9,7 @@ from dialogflow_connect import detect_intent_text
 from log_config import get_logger
 
 
-def dialogflow_answer(event, vk_api):
+def send_answer(event, vk_api):
     response = detect_intent_text(PROJECT_ID, event.user_id, event.text)
 
     if response:
@@ -30,4 +30,4 @@ if __name__ == "__main__":
 
     for event in longpoll.listen():
         if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-            dialogflow_answer(event, vk_api)
+            send_answer(event, vk_api)
