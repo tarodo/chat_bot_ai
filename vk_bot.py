@@ -6,7 +6,7 @@ from environs import Env
 from vk_api.longpoll import VkEventType, VkLongPoll
 
 from dialogflow_connect import detect_intent_text
-from common import get_logger
+from log_config import get_logger
 
 
 def dialogflow_answer(event, vk_api):

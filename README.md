@@ -34,7 +34,7 @@ python load_intent.py
 1. Создать файл `.env` из `.env.Exmaple`
 2. `pip install -r requirements.txt`
 3. run:
-   1. Telegram: `python main.py`
+   1. Telegram: `python tg_bot.py`
    2. VK: `python vk_bot.py`
 
 ## Запуск на heroku

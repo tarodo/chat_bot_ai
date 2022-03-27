@@ -5,7 +5,7 @@ from telegram import Update
 from telegram.ext import (CallbackContext, CommandHandler, Filters,
                           MessageHandler, Updater)
 
-from common import get_logger
+from log_config import get_logger
 from dialogflow_connect import detect_intent_text
 
 
