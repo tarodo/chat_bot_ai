@@ -22,7 +22,7 @@ if __name__ == "__main__":
     env = Env()
     env.read_env()
     PROJECT_ID = os.environ["GOOGLE_PROJECT_ID"]
-    logger = get_logger("vk_bot", os.getenv("BOT_REPORT_TOKEN"), os.getenv("CHAT_ID"))
+    logger = get_logger("vk_bot", os.getenv("BOT_REPORT_TOKEN"), os.getenv("TG_ADMIN_CHAT_ID"))
 
     vk_session = vk_api.VkApi(token=os.environ["VK_BOT_TOKEN"])
     vk_api = vk_session.get_api()

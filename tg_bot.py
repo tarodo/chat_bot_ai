@@ -28,7 +28,7 @@ def dialogflow_answer(update: Update, context: CallbackContext) -> None:
 
 def main() -> None:
     """Start the bot."""
-    bot_token = os.environ["BOT_TOKEN"]
+    bot_token = os.environ["TG_BOT_TOKEN"]
     updater = Updater(bot_token)
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler("start", start))
@@ -43,6 +43,6 @@ def main() -> None:
 if __name__ == "__main__":
     env = Env()
     env.read_env()
-    logger = get_logger("tg_bot", os.getenv("BOT_REPORT_TOKEN"), os.getenv("CHAT_ID"))
+    logger = get_logger("tg_bot", os.getenv("BOT_REPORT_TOKEN"), os.getenv("TG_ADMIN_CHAT_ID"))
     PROJECT_ID = os.environ["GOOGLE_PROJECT_ID"]
     main()
