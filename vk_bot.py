@@ -6,7 +6,6 @@ from environs import Env
 from vk_api.longpoll import VkEventType, VkLongPoll
 
 from dialogflow_connect import detect_intent_text
-from log_config import get_logger
 
 
 def send_answer(event, vk_api):
@@ -21,7 +20,6 @@ def send_answer(event, vk_api):
 if __name__ == "__main__":
     env = Env()
     env.read_env()
-    logger = get_logger("vk_bot", os.getenv("BOT_REPORT_TOKEN"), os.getenv("TG_ADMIN_CHAT_ID"))
 
     vk_session = vk_api.VkApi(token=os.environ["VK_BOT_TOKEN"])
     vk_api = vk_session.get_api()

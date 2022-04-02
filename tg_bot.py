@@ -5,7 +5,6 @@ from telegram import Update
 from telegram.ext import (CallbackContext, CommandHandler, Filters,
                           MessageHandler, Updater)
 
-from log_config import get_logger
 from dialogflow_connect import detect_intent_text
 
 
@@ -46,6 +45,5 @@ def main() -> None:
 if __name__ == "__main__":
     env = Env()
     env.read_env()
-    logger = get_logger("tg_bot", os.getenv("BOT_REPORT_TOKEN"), os.getenv("TG_ADMIN_CHAT_ID"))
 
     main()
