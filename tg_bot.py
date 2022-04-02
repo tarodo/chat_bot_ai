@@ -22,8 +22,11 @@ def send_answer(update: Update, context: CallbackContext) -> None:
     response = detect_intent_text(
         PROJECT_ID, update.effective_user.id, update.message.text
     )
+    response_text = update.message.text
     if response:
-        update.message.reply_text(response)
+        response_text = response
+
+    update.message.reply_text(response_text)
 
 
 def main() -> None:
