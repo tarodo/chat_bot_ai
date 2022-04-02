@@ -10,7 +10,7 @@ from log_config import get_logger
 
 
 def send_answer(event, vk_api):
-    response = detect_intent_text(PROJECT_ID, event.user_id, event.text)
+    response = detect_intent_text(event.user_id, event.text)
 
     if response:
         vk_api.messages.send(
@@ -21,7 +21,6 @@ def send_answer(event, vk_api):
 if __name__ == "__main__":
     env = Env()
     env.read_env()
-    PROJECT_ID = os.environ["GOOGLE_PROJECT_ID"]
     logger = get_logger("vk_bot", os.getenv("BOT_REPORT_TOKEN"), os.getenv("TG_ADMIN_CHAT_ID"))
 
     vk_session = vk_api.VkApi(token=os.environ["VK_BOT_TOKEN"])

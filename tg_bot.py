@@ -20,7 +20,7 @@ def start(update: Update, context: CallbackContext) -> None:
 def send_answer(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
     response = detect_intent_text(
-        PROJECT_ID, update.effective_user.id, update.message.text
+        update.effective_user.id, update.message.text
     )
     response_text = update.message.text
     if response:
@@ -47,5 +47,5 @@ if __name__ == "__main__":
     env = Env()
     env.read_env()
     logger = get_logger("tg_bot", os.getenv("BOT_REPORT_TOKEN"), os.getenv("TG_ADMIN_CHAT_ID"))
-    PROJECT_ID = os.environ["GOOGLE_PROJECT_ID"]
+
     main()
