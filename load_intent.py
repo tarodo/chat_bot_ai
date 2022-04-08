@@ -4,6 +4,11 @@ import os
 from environs import Env
 from google.cloud import dialogflow
 
+FALLBACK_PHRASES = [
+    "Sorry, I don't understand you.",
+    "Call my manager, please"
+]
+
 
 def create_intent(project_id, display_name, training_phrases_parts, message_texts):
     """Create an intent of the given intent type."""
@@ -29,6 +34,20 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
     )
 
 
+def create_fallback_intent(project_id, message_texts):
+    text = dialogflow.Intent.Message.Text(text=message_texts)
+    message = dialogflow.Intent.Message(text=text)
+    intent = dialogflow.Intent(
+        display_name="Sorry", is_fallback=True, messages=[message]
+    )
+    intents_client = dialogflow.IntentsClient()
+
+    parent = dialogflow.AgentsClient.agent_path(project_id)
+    response = intents_client.create_intent(
+        request={"parent": parent, "intent": intent}
+    )
+
+
 if __name__ == "__main__":
     env = Env()
     env.read_env()
@@ -44,3 +63,5 @@ if __name__ == "__main__":
             work_intent_block["questions"],
             [work_intent_block["answer"]],
         )
+
+    create_fallback_intent(PROJECT_ID, FALLBACK_PHRASES)

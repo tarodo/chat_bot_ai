@@ -18,5 +18,4 @@ def detect_intent_text(session_id, text, language_code="ru", project_id=PROJECT_
         request={"session": session, "query_input": query_input}
     )
 
-    if not response.query_result.intent.is_fallback:
-        return response.query_result.fulfillment_text
+    return response.query_result.fulfillment_text
