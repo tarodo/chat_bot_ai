@@ -30,6 +30,9 @@ def send_answer(update: Update, context: CallbackContext) -> None:
 
 def main() -> None:
     """Start the bot."""
+    env = Env()
+    env.read_env()
+
     bot_token = os.environ["TG_BOT_TOKEN"]
     updater = Updater(bot_token)
     dispatcher = updater.dispatcher
@@ -43,7 +46,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    env = Env()
-    env.read_env()
-
     main()
