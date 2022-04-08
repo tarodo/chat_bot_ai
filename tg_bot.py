@@ -11,9 +11,7 @@ from dialogflow_connect import detect_intent_text
 def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
     user = update.effective_user
-    update.message.reply_markdown_v2(
-        rf"Здравствуйте",
-    )
+    update.message.reply_markdown_v2("Здравствуйте")
 
 
 def send_answer(update: Update, context: CallbackContext) -> None:
