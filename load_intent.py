@@ -5,12 +5,6 @@ from environs import Env
 from google.cloud import dialogflow
 
 
-def read_phrases(json_path, question_type) -> dict:
-    with open(json_path, "r", encoding="utf-8") as my_file:
-        questions = json.load(my_file)
-    return questions[question_type]
-
-
 def create_intent(project_id, display_name, training_phrases_parts, message_texts):
     """Create an intent of the given intent type."""
     intents_client = dialogflow.IntentsClient()
