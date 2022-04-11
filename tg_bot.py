@@ -16,7 +16,7 @@ def start(update: Update, context: CallbackContext) -> None:
 
 def send_answer(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
-    response = detect_intent_text(
+    response, _ = detect_intent_text(
         update.effective_user.id, update.message.text
     )
     response_text = response

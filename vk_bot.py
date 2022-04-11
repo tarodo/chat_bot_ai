@@ -9,9 +9,9 @@ from dialogflow_connect import detect_intent_text
 
 
 def send_answer(event, vk_api):
-    response = detect_intent_text(event.user_id, event.text)
+    response, is_fallback = detect_intent_text(event.user_id, event.text)
 
-    if response:
+    if not is_fallback:
         vk_api.messages.send(
             user_id=event.user_id, message=response, random_id=random.randint(1, 1000)
         )
